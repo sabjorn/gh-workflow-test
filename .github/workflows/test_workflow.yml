@@ -1,0 +1,26 @@
+name: Build HDA and Blackbox HDA
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build-hda:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set version number
+        run: |
+          echo "event name ${{ github.event_name }}"
+
+      - name: github.event.prerelease
+        if: '!github.event.prerelease'
+        run: echo "!github.event.prerelease"
+      
+      - name: github.event.prerelease2
+        if: !github.event.prerelease
+        run: echo "!github.event.prerelease"
+
+      - name: github.event.release.prerelease
+        if: !github.event.release.prerelease
+        run: echo "!github.event.release.prerelease"
